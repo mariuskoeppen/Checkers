@@ -331,13 +331,13 @@ class Engine {
     const sum = 1000 * material
               + 410 * materialKings
               + 10 * moves
-              + 40 * centerBonus
+              + 30 * centerBonus
               + 20 * kingCenterBonus
               + 40 * defenseBonus
               + 10 * weakCornerBiasHome
               + 10 * weakCornerBiasAttack
               + 20 * advancedPawnsBias
-              - 100 * trappedKings
+              - 300 * trappedKings
 
     return sum
   }

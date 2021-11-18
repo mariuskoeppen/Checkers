@@ -40,7 +40,7 @@ const getTrappedKings = (mine, others, kings) => {
       const k = addHighBitAtIdx(0n, kingLSB)
 
 
-      if((k >> 8n) & other_kings) {
+      if((k >> 9n) & other_kings) {
         trapped ^= k
       }
 
@@ -52,7 +52,7 @@ const getTrappedKings = (mine, others, kings) => {
       const kingLSB = BINT.lsb(kings8)
       const k = addHighBitAtIdx(0n, kingLSB)
 
-      if((k << 8n) & other_kings) {
+      if((k << 9n) & other_kings) {
         trapped ^= k
       }
 

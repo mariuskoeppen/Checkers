@@ -150,11 +150,9 @@ class Engine {
     if(isDraw) {
       return 0
     } else if(checkWhiteWin(node, side)) {
-      return side ? this.scores.win : -this.scores.win
-      // return side ? this.scores.win + depth : -this.scores.win - depth
+      return this.getWinScore(depth, side)
     } else if(checkBlackWin(node, side)) {
-      return side ? -this.scores.win : this.scores.win
-      // return side ? -this.scores.win - depth : this.scores.win + depth
+      return - this.getWinScore(depth, side)
     }
 
     if(depth <= 0) {
@@ -263,11 +261,9 @@ class Engine {
     if(isDraw) {
       return 0
     } else if(checkWhiteWin(node, side)) {
-      return side ? this.scores.win : -this.scores.win
-      // return side ? this.scores.win + depth : -this.scores.win - depth
+      return this.getWinScore(depth, side)
     } else if(checkBlackWin(node, side)) {
-      return side ? -this.scores.win : this.scores.win
-      // return side ? -this.scores.win - depth : this.scores.win + depth
+      return - this.getWinScore(depth, side)
     }
 
     const moves = this.generator.getCaptureMoves(node, hash, side)
@@ -340,6 +336,11 @@ class Engine {
               - 300 * trappedKings
 
     return sum
+  }
+  
+  getWinScore(depth, side) {
+    const search_depth = this.controller.depth - depth
+    return side ? (this.scores.win - search_depth) : - (this.scores.win - search_depth)
   }
 
   pickNextMove(index, moves) {

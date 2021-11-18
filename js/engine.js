@@ -150,9 +150,11 @@ class Engine {
     if(isDraw) {
       return 0
     } else if(checkWhiteWin(node, side)) {
-      return this.getWinScore(depth, side)
+      return side ? this.scores.win : -this.scores.win
+      // return this.getWinScore(depth, side)
     } else if(checkBlackWin(node, side)) {
-      return - this.getWinScore(depth, side)
+      return side ? -this.scores.win : this.scores.win
+      // return - this.getWinScore(depth, side)
     }
 
     if(depth <= 0) {
@@ -261,9 +263,11 @@ class Engine {
     if(isDraw) {
       return 0
     } else if(checkWhiteWin(node, side)) {
-      return this.getWinScore(depth, side)
+      return side ? this.scores.win : -this.scores.win
+      // return this.getWinScore(depth, side)
     } else if(checkBlackWin(node, side)) {
-      return - this.getWinScore(depth, side)
+      return side ? -this.scores.win : this.scores.win
+      // return - this.getWinScore(depth, side)
     }
 
     const moves = this.generator.getCaptureMoves(node, hash, side)

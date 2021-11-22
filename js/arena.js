@@ -6,6 +6,7 @@ class Arena {
     this.board = board
 
     this.currentPlayer = whiteStarts ? playerWhite : playerBlack
+    ui.highlightPlayer(whiteStarts)
 
     this.moveWasPlayed = false
     this.animationDelay = 500
@@ -90,9 +91,11 @@ class Arena {
     if(this.currentPlayer == this.playerBlack) {
       // console.log('Its whites turn')
       this.currentPlayer = this.playerWhite
+      ui.highlightPlayer(1)
     } else {
       // console.log('Its blacks turn')
       this.currentPlayer = this.playerBlack
+      ui.highlightPlayer(0)
     }
 
     if(this.currentPlayer instanceof RealPlayer) {

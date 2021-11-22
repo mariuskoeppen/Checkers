@@ -1,6 +1,13 @@
 class UIHandler {
   constructor() {
     this.elements = {}
+
+    this.getElementsOnStart()
+    this.updateOnStart()
+    this.bindEvents()
+  }
+
+  getElementsOnStart() {
     this.elements.toggle_white = this.sel('#checkbox-white')
     this.elements.toggle_black = this.sel('#checkbox-black')
 
@@ -13,8 +20,8 @@ class UIHandler {
     this.elements.toggle_draw_reps = this.sel('#toggle-draw_reps')
     this.elements.toggle_draw_moves = this.sel('#toggle-draw_moves')
 
-    this.updateOnStart()
-    this.bindEvents()
+    this.elements.selector_white = this.sel('#select_player-white')
+    this.elements.selector_black = this.sel('#select_player-black')
   }
 
   updateOnStart() {
@@ -114,6 +121,16 @@ class UIHandler {
 
   listen(el, action, cb) {
     el.addEventListener(action, cb)
+  }
+
+  highlightPlayer(side) {
+    if(side) {
+      this.elements.selector_white.setAttribute('data-highlight', 'true')
+      this.elements.selector_black.setAttribute('data-highlight', 'false')
+    } else {
+      this.elements.selector_white.setAttribute('data-highlight', 'false')
+      this.elements.selector_black.setAttribute('data-highlight', 'true')
+    }
   }
 }
 

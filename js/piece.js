@@ -2,15 +2,13 @@ class Piece {
   constructor(white) {
     this.white = white
 
-    this.x = 0
-    this.y = 0
     this.radius = TILE_SIZE / 1.7
 
     this.promoted = false
   }
 
-  show() {
-    const { x , y, radius, white, promoted } = this
+  show(x, y) {
+    const { radius, white, promoted } = this
     noStroke()
     let col = white ? COLORS.white : COLORS.black
     fill(col)
@@ -41,10 +39,5 @@ class Piece {
       line(-5, 11, 5, 11)
       pop()
     }
-  }
-
-  moveTo(x, y) {
-    this.x = x
-    this.y = y
   }
 }

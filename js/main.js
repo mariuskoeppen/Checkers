@@ -14,6 +14,8 @@ const GAME_OPTIONS = {
   whiteBegins: false,
 }
 
+let FLIPPED_BOARD = false
+
 const SIZE = 600
 const TILE_SIZE = SIZE / 8
 
@@ -61,6 +63,7 @@ async function mouseClicked() {
   if(mouseOverCanvas()) {
     const { board } = game
     const clickedTile = board.getTileAtCoordinates(mouseX, mouseY)
+    console.log(clickedTile);
     game.arena.clickedTile(clickedTile)
   }
 }

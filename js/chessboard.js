@@ -26,13 +26,25 @@ class Chessboard {
     noStroke()
     textSize(12)
     textAlign(CENTER, CENTER)
+    
     for(let i = 0; i < 8; i++) {
-      const x = (i + 0.5) * TILE_SIZE
-      text(files[i], x, height - 8)
+      if(FLIPPED_BOARD) {
+        const x = (i + 0.5) * TILE_SIZE
+        text(files[7 - i], x, 8)
+      } else {
+        const x = (i + 0.5) * TILE_SIZE
+        text(files[i], x, height - 8)
+      }
     }
+
     for(let i = 0; i < 8; i++) {
-      const y = (i + 0.5) * TILE_SIZE
-      text(ranks[7 - i], 8, y)
+      if(FLIPPED_BOARD) {
+        const y = (i + 0.5) * TILE_SIZE
+        text(ranks[i], width - 8, y)
+      } else {
+        const y = (i + 0.5) * TILE_SIZE
+        text(ranks[7 - i], 8, y)
+      }
     }
   }
 

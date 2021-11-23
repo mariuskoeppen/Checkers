@@ -19,7 +19,8 @@ class Tile {
   }
 
   show() {
-    const { x, y, piece, highlighted, selected, legalMover, legalTarget, lastJump } = this
+    const { piece, highlighted, selected, legalMover, legalTarget, lastJump } = this
+    const { x, y } = this.coords
 
     let col = selected ? COLORS.selected : (highlighted ? COLORS.highlighted : COLORS.blackSquare)
     fill(col)
@@ -44,13 +45,28 @@ class Tile {
     }
 
     if(piece) {
-      piece.show()
+      piece.show(x + TILE_SIZE / 2, y + TILE_SIZE / 2)
+    }
+  }
+
+  get coords() {
+    if(FLIPPED_BOARD) {
+      const alternatingRow = (this.i%2 == 0) ? 1 : 0
+      const x = width - (this.j*2 + alternatingRow + 1) * TILE_SIZE
+      const y = (7 - this.i) * TILE_SIZE
+
+      return { x, y }
+    } else {
+      const alternatingRow = (this.i%2 == 0) ? 1 : 0
+      const x = (this.j*2 + alternatingRow) * TILE_SIZE
+      const y = this.i * TILE_SIZE
+
+      return { x, y }
     }
   }
 
   addPiece(p) {
     this.piece = p
-    this.piece.moveTo(this.x + TILE_SIZE / 2, this.y + TILE_SIZE / 2)
   }
 
   removePiece() {

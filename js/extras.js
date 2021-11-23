@@ -3,11 +3,20 @@ const mouseOverCanvas = () => {
 }
 
 const indecesFromCoordinates = (x, y) => {
-  const twidth = width / 8
-  const i =  floor(y / twidth)
-  const j = floor(x / twidth + i%2 - 1) / 2
+  if(FLIPPED_BOARD) {
+    const twidth = width / 8
+    const i =  floor(y / twidth)
+    const j = floor(x / twidth + i%2 - 1) / 2
 
-  return {i, j}
+    return { i: 7 - i, j: 3 - j }
+  } else {
+    const twidth = width / 8
+    const i =  floor(y / twidth)
+    const j = floor(x / twidth + i%2 - 1) / 2
+
+    return { i, j }
+  }
+
 }
 
 const call_after_dom_update = (cb) => {

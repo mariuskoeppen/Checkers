@@ -22,6 +22,9 @@ class UIHandler {
 
     this.elements.selector_white = this.sel('#select_player-white')
     this.elements.selector_black = this.sel('#select_player-black')
+
+    this.elements.toggle_flip_board = this.sel('#toggle-flipboard')
+
   }
 
   updateOnStart() {
@@ -48,6 +51,8 @@ class UIHandler {
     this.elements.toggle_white_starts.checked = GAME_OPTIONS.whiteBegins
     this.elements.toggle_draw_reps.checked = DRAW_BY_REPETITION
     this.elements.toggle_draw_moves.checked = DRAW_BY_50_MOVES
+
+    this.elements.toggle_flip_board.checked = FLIPPED_BOARD
   }
 
   bindEvents() {
@@ -112,6 +117,11 @@ class UIHandler {
 
     this.listen(this.elements.toggle_draw_moves, 'change', (e) => {
       DRAW_BY_50_MOVES = this.elements.toggle_draw_moves.checked
+    })
+
+    // FLIPPED BOARD
+    this.listen(this.elements.toggle_flip_board, 'change', (e) => {
+      FLIPPED_BOARD = this.elements.toggle_flip_board.checked
     })
   }
 
